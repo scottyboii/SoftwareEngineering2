@@ -42,6 +42,7 @@ public class NewLeadActivity extends AppCompatActivity {
                         // handler result
                         //TODO: Write a check for successful result
                         Toast.makeText(NewLeadActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
+                        finish();
                     }
 
                     @Override
