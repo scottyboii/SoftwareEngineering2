@@ -1,7 +1,16 @@
 package com.example.httpurlconnectionexample;
 
 public class Lead {
-    String id, source, status, reason_disqualified, type, vendor_id, linkedin, role, rating, company_id;
+    String id;
+    final String source;
+    final String status;
+    String reason_disqualified;
+    final String type;
+    String vendor_id;
+    String linkedin;
+    String role;
+    String rating;
+    String company_id;
 
 
     public Lead(String id, String source, String status, String type) {
