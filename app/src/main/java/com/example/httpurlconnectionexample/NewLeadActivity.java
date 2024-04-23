@@ -56,32 +56,32 @@ public class NewLeadActivity extends AppCompatActivity {
     }
 
     private void populateSpinners() {
-        List<String> sources = new ArrayList<String>();
+        List<String> sources = new ArrayList<>();
         sources.add("website");
         sources.add("telephone");
         sources.add("email");
 
-        List<String> status = new ArrayList<String>();
+        List<String> status = new ArrayList<>();
         status.add("new");
         status.add("working");
         status.add("qualified");
         status.add("disqualified");
         status.add("customer");
 
-        List<String> types = new ArrayList<String>();
+        List<String> types = new ArrayList<>();
         types.add("commercial");
         types.add("educational");
         types.add("domestic");
 
-        ArrayAdapter<String> dataAdapterSources = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sources);
+        ArrayAdapter<String> dataAdapterSources = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sources);
         dataAdapterSources.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_source.setAdapter(dataAdapterSources);
 
-        ArrayAdapter<String> dataAdapterStatus = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, status);
+        ArrayAdapter<String> dataAdapterStatus = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, status);
         dataAdapterStatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_status.setAdapter(dataAdapterStatus);
 
-        ArrayAdapter<String> dataAdapterTypes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, types);
+        ArrayAdapter<String> dataAdapterTypes = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
         dataAdapterTypes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_type.setAdapter(dataAdapterTypes);
     }
