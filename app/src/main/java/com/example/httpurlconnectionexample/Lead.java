@@ -1,5 +1,7 @@
 package com.example.httpurlconnectionexample;
 
+import androidx.annotation.NonNull;
+
 public class Lead {
     String id;
     final String source;
@@ -20,6 +22,7 @@ public class Lead {
         this.type = type;
     }
 
+    @NonNull
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Lead{");
