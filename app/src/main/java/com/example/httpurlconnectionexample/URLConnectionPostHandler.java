@@ -77,7 +77,6 @@ public class URLConnectionPostHandler extends AsyncTask<Object, String, Object> 
             try (OutputStream os = urlConnection.getOutputStream()) {
                 os.write(param[1].toString().getBytes());
                 os.flush();
-                os.close();
             }
 
             try (BufferedReader br = new BufferedReader(
