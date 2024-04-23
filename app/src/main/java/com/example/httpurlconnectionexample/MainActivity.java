@@ -80,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
                         object.getString("id"),
                         object.getString("source"),
                         object.getString("status"),
-                        object.getString("type"));
+                        object.getString("reason"),
+                        object.getString("type"),
+                        object.getString("vendorid"),
+                        object.getString("rating"),
+                        object.getString("companyid"));
                 items.add(newLead.toString());
             }
             return items;
