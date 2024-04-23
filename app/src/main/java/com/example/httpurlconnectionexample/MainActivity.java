@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void dataDownloadedSuccessfully(Object data) {
                 ListView listView = (ListView) findViewById(R.id.listView);
 
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
                         android.R.layout.simple_list_item_1, jsonDecoder((String) data));
 
                 if (listView != null) {
