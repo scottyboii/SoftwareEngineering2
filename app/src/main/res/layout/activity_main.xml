@@ -30,7 +30,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_menu_add"
-        android:contentDescription="Add a new lead"
+        android:contentDescription="@string/add_lead"
         android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

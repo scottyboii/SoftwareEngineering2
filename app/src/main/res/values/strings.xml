@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HttpURLConnectionExample</string>
+    <string name="add_lead">Add a new lead</string>
 </resources>
