@@ -50,6 +50,28 @@
         app:layout_constraintTop_toBottomOf="@+id/textView_status" />
 
     <TextView
+        android:id="@+id/textView_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Reason Disqualified"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_status" />
+
+    <Spinner
+        android:id="@+id/spinner_reason"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_source"
+        app:layout_constraintTop_toBottomOf="@+id/textView_reason" />
+
+    <TextView
         android:id="@+id/textView_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +80,7 @@
         android:text="Type"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_status" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_reason" />
 
     <Spinner
         android:id="@+id/spinner_type"
@@ -71,6 +93,74 @@
         app:layout_constraintStart_toStartOf="@+id/textView_source"
         app:layout_constraintTop_toBottomOf="@+id/textView_type" />
 
+    <TextView
+        android:id="@+id/textView_vendorID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Vendor ID"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_type" />
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/editText_vendorID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_source"
+        app:layout_constraintTop_toBottomOf="@+id/textView_vendorID" />
+
+    <TextView
+        android:id="@+id/textView_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Rating"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText_vendorID" />
+
+    <Spinner
+        android:id="@+id/spinner_rating"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_source"
+        app:layout_constraintTop_toBottomOf="@+id/textView_rating" />
+
+    <TextView
+        android:id="@+id/textView_companyID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Company ID"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_rating" />
+
+    <EditText
+        android:inputType="number"
+        android:id="@+id/editText_companyID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_source"
+        app:layout_constraintTop_toBottomOf="@+id/textView_companyID" />
+
     <Button
         android:id="@+id/button_submit"
         android:layout_width="wrap_content"
@@ -79,6 +169,6 @@
         android:layout_marginEnd="16dp"
         android:text="Submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_type" />
+        app:layout_constraintTop_toBottomOf="@+id/editText_companyID" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
