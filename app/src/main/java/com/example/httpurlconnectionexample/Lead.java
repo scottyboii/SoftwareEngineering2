@@ -1,5 +1,7 @@
 package com.example.httpurlconnectionexample;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 public class Lead {
@@ -31,14 +33,32 @@ public class Lead {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append(id).append(")\n");
-        sb.append("Source: '").append(source).append('\'');
-        sb.append("\nStatus: '").append(status).append('\'');
-        sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
-        sb.append("\nLead Type: '").append(type).append('\'');
-        sb.append("\nVendor ID: ").append(vendor_id);
-        sb.append("\nRating: '").append(rating).append('\'');
-        sb.append("\nCompany ID: ").append(company_id);
+        if (source != "null" && !source.isEmpty() || status != "null" && !status.isEmpty() || reason_disqualified != "null" && !reason_disqualified.isEmpty() || type != "null" && !type.isEmpty() || vendor_id != "null" && !vendor_id.isEmpty() || rating != "null" && !rating.isEmpty() || company_id != "null" && !company_id.isEmpty()) {
+            sb.append(id).append(")");
+            if (source != "null" && !source.isEmpty()) {
+                sb.append("\nSource: '").append(source).append('\'');
+            }
+            if (status != "null" && !status.isEmpty()) {
+                sb.append("\nStatus: '").append(status).append('\'');
+            }
+            if (reason_disqualified != "null" && !reason_disqualified.isEmpty()) {
+                sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
+            }
+            if (type != "null" && !type.isEmpty()) {
+                sb.append("\nLead Type: '").append(type).append('\'');
+            }
+            if (vendor_id != "null" && !vendor_id.isEmpty()) {
+                sb.append("\nVendor ID: ").append(vendor_id);
+            }
+            if (rating != "null" && !rating.isEmpty()) {
+                sb.append("\nRating: '").append(rating).append('\'');
+            }
+            if (company_id != "null" && !company_id.isEmpty()) {
+                sb.append("\nCompany ID: ").append(company_id);
+            }
+        } else {
+            sb.append(id).append(")\n").append("Empty Lead");
+        }
         return sb.toString();
     }
 }
