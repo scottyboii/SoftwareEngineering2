@@ -29,16 +29,15 @@ public class Lead {
     @NonNull
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Lead{");
-        sb.append("id='").append(id).append('\'');
-        sb.append(", source='").append(source).append('\'');
-        sb.append(", status='").append(status).append('\'');
-        sb.append(", reason='").append(reason_disqualified).append('\'');
-        sb.append(", typeoflead='").append(type).append('\'');
-        sb.append(", vendorid='").append(vendor_id).append('\'');
-        sb.append(", rating='").append(rating).append('\'');
-        sb.append(", companyid='").append(company_id).append('\'');
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder();
+        sb.append(id).append(")\n");
+        sb.append("Source: '").append(source).append('\'');
+        sb.append("\nStatus: '").append(status).append('\'');
+        sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
+        sb.append("\nLead Type: '").append(type).append('\'');
+        sb.append("\nVendor ID: ").append(vendor_id);
+        sb.append("\nRating: '").append(rating).append('\'');
+        sb.append("\nCompany ID: ").append(company_id);
         return sb.toString();
     }
 }
