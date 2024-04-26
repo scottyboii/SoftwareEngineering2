@@ -3,6 +3,7 @@ package com.example.httpurlconnectionexample;
 import androidx.annotation.NonNull;
 
 public class Lead {
+    @NonNull
     String id;
     final String source;
     final String status;
