@@ -1,5 +1,7 @@
 package com.example.httpurlconnectionexample;
 
+import static java.lang.String.valueOf;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -42,7 +44,9 @@ public class Lead {
                 sb.append("\nStatus: '").append(status).append('\'');
             }
             if (reason_disqualified != "null" && !reason_disqualified.isEmpty()) {
-                sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
+                if (!reason_disqualified.equalsIgnoreCase("Not Disqualified")) {
+                    sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
+                }
             }
             if (type != "null" && !type.isEmpty()) {
                 sb.append("\nLead Type: '").append(type).append('\'');

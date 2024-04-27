@@ -75,6 +75,7 @@ public class NewLeadActivity extends AppCompatActivity {
         status.add("customer");
 
         List<String> reason = new ArrayList<>();
+        reason.add("Not Disqualified");
         reason.add("Too Small");
         reason.add("Unserved Geography");
         reason.add("Bad Information");
