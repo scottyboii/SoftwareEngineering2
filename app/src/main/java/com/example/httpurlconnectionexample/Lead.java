@@ -21,7 +21,7 @@ public class Lead {
     final String company_id;
 
     // Lead Constructor
-    public Lead(String id, String source, String status, String reason, String type, String vendorid, String rating, String companyid) {
+    public Lead(@NonNull String id, String source, String status, String reason, String type, String vendorid, String rating, String companyid) {
         this.id = id;
         this.source = source;
         this.status = status;
