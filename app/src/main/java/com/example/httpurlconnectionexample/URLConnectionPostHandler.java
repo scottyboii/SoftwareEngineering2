@@ -65,7 +65,7 @@ public class URLConnectionPostHandler extends AsyncTask<Object, String, Object> 
 
     @Override
     protected Object doInBackground(Object... param) {
-        URL url = null;
+        URL url;
         HttpURLConnection urlConnection = null;
         try {
             url = new URL(param[0].toString());
@@ -82,7 +82,7 @@ public class URLConnectionPostHandler extends AsyncTask<Object, String, Object> 
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(urlConnection.getInputStream(), StandardCharsets.UTF_8))) {
                 StringBuilder response = new StringBuilder();
-                String responseLine = null;
+                String responseLine;
                 while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }

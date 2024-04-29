@@ -62,13 +62,13 @@ public class URLConnectionGetHandler extends AsyncTask<Object, Void, Object> {
 
     @Override
     protected Object doInBackground(Object... param) {
-        URL url = null;
+        URL url;
         HttpURLConnection urlConnection = null;
         try {
             url = new URL(param[0].toString());
             urlConnection = (HttpURLConnection) url.openConnection();
             BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            String result = null;
+            String result;
             result = br.readLine();
             return result;
         } catch (IOException e) {
