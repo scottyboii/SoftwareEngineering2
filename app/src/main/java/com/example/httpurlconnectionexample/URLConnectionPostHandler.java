@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * Extract from AsyncTask documentation
@@ -91,7 +92,7 @@ public class URLConnectionPostHandler extends AsyncTask<Object, String, Object> 
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            urlConnection.disconnect();
+            Objects.requireNonNull(urlConnection).disconnect();
         }
         return null;
     }
