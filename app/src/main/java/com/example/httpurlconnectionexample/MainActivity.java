@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         uRLConnectionGetHandler.setDataDownloadListener(new URLConnectionGetHandler.DataDownloadListener() {
             @Override
             public void dataDownloadedSuccessfully(Object data) {
-                ListView listView = (ListView) findViewById(R.id.listView);
+                ListView listView = findViewById(R.id.listView);
 
                 // Add the leads to the view
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
