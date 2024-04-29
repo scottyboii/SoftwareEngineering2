@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 public class Lead {
     // Lead Properties
     @NonNull
-    String id;
+    final String id;
     final String source;
     final String status;
     final String reason_disqualified;
