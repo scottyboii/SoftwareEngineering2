@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // Add the leads to the view
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
-                        android.R.layout.simple_list_item_1, jsonDecoder((String) data));
+                        android.R.layout.simple_list_item_1, Objects.requireNonNull(jsonDecoder((String) data)));
 
                 if (listView != null) {
                     listView.setAdapter(adapter);
