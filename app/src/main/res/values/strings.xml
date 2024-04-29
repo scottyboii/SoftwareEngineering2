@@ -3,4 +3,12 @@
     <string name="add_lead">Add a new lead</string>
     <string name="companyID_hint">Company ID</string>
     <string name="vendorID_hint">Vendor ID</string>
+    <string name="tv_source">Source</string>
+    <string name="tv_status">Status</string>
+    <string name="tv_reason">Reason Disqualified</string>
+    <string name="tv_type">Type</string>
+    <string name="tv_vendorID">Vendor ID</string>
+    <string name="tv_rating">Rating</string>
+    <string name="tv_companyID">Company ID</string>
+    <string name="btn_submit">Submit</string>
 </resources>
