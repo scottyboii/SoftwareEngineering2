@@ -21,8 +21,6 @@ public class Lead {
     final String reason_disqualified;
     final String type;
     final String vendor_id;
-    // String linkedin;
-    // String role;
     final String rating;
     final String company_id;
 
