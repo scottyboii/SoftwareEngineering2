@@ -39,27 +39,24 @@ public class NewLeadActivity extends AppCompatActivity {
 
         //button
         button_submit = findViewById(R.id.button_submit);
-        button_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                URLConnectionPostHandler uRLConnectionPostHandler = new URLConnectionPostHandler();
-                uRLConnectionPostHandler.setDataDownloadListener(new URLConnectionPostHandler.DataDownloadListener() {
-                    @Override
-                    public void dataDownloadedSuccessfully(Object data) {
-                        // handler result
-                        //TODO: Write a check for successful result
-                        //Toast.makeText(NewLeadActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
-                        Toast.makeText(NewLeadActivity.this, generateParameters(), Toast.LENGTH_LONG).show();
-                        finish();
-                    }
+        button_submit.setOnClickListener(v -> {
+            URLConnectionPostHandler uRLConnectionPostHandler = new URLConnectionPostHandler();
+            uRLConnectionPostHandler.setDataDownloadListener(new URLConnectionPostHandler.DataDownloadListener() {
+                @Override
+                public void dataDownloadedSuccessfully(Object data) {
+                    // handler result
+                    //TODO: Write a check for successful result
+                    //Toast.makeText(NewLeadActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewLeadActivity.this, generateParameters(), Toast.LENGTH_LONG).show();
+                    finish();
+                }
 
-                    @Override
-                    public void dataDownloadFailed() {
-                        Toast.makeText(NewLeadActivity.this, "Record not added.", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                uRLConnectionPostHandler.execute(url_insert_lead, generateParameters());
-            }
+                @Override
+                public void dataDownloadFailed() {
+                    Toast.makeText(NewLeadActivity.this, "Record not added.", Toast.LENGTH_SHORT).show();
+                }
+            });
+            uRLConnectionPostHandler.execute(url_insert_lead, generateParameters());
         });
     }
 

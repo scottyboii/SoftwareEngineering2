@@ -32,12 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Start the new lead activity to add a lead
         fab = findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), NewLeadActivity.class);
-                startActivity(intent);
-            }
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(getBaseContext(), NewLeadActivity.class);
+            startActivity(intent);
         });
     }
 
