@@ -32,34 +32,34 @@ public class Lead {
         this.company_id = companyid;
     }
 
-    // Lead toString, with logic to only include the relevant parts of the string. Will return "empty" lead if no field is set.
+    // Lead toString, with logic to only include the relevant parts of the string. Will return "empty lead" if no field is set.
     @NonNull
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        if (source != "null" && !source.isEmpty() || status != "null" && !status.isEmpty() || reason_disqualified != "null" && !reason_disqualified.isEmpty() || type != "null" && !type.isEmpty() || vendor_id != "null" && !vendor_id.isEmpty() || rating != "null" && !rating.isEmpty() || company_id != "null" && !company_id.isEmpty()) {
+        if (!source.equalsIgnoreCase("null") && !source.isEmpty() || !status.equalsIgnoreCase("null") && !status.isEmpty() || !reason_disqualified.equalsIgnoreCase("null") && !reason_disqualified.isEmpty() || !type.equalsIgnoreCase("null") && !type.isEmpty() || !vendor_id.equalsIgnoreCase("null") && !vendor_id.isEmpty() || !rating.equalsIgnoreCase("null") && !rating.isEmpty() || !company_id.equalsIgnoreCase("null") && !company_id.isEmpty()) {
             sb.append(id).append(")");
-            if (source != "null" && !source.isEmpty()) {
+            if (!source.equalsIgnoreCase("null") && !source.isEmpty()) {
                 sb.append("\nSource: '").append(source).append('\'');
             }
-            if (status != "null" && !status.isEmpty()) {
+            if (!status.equalsIgnoreCase("null") && !status.isEmpty()) {
                 sb.append("\nStatus: '").append(status).append('\'');
             }
-            if (reason_disqualified != "null" && !reason_disqualified.isEmpty()) {
+            if (!reason_disqualified.equalsIgnoreCase("null") && !reason_disqualified.isEmpty()) {
                 if (!reason_disqualified.equalsIgnoreCase("Not Disqualified")) {
                     sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
                 }
             }
-            if (type != "null" && !type.isEmpty()) {
+            if (!type.equalsIgnoreCase("null") && !type.isEmpty()) {
                 sb.append("\nLead Type: '").append(type).append('\'');
             }
-            if (vendor_id != "null" && !vendor_id.isEmpty()) {
+            if (!vendor_id.equalsIgnoreCase("null") && !vendor_id.isEmpty()) {
                 sb.append("\nVendor ID: ").append(vendor_id);
             }
-            if (rating != "null" && !rating.isEmpty()) {
+            if (!rating.equalsIgnoreCase("null") && !rating.isEmpty()) {
                 sb.append("\nRating: '").append(rating).append('\'');
             }
-            if (company_id != "null" && !company_id.isEmpty()) {
+            if (!company_id.equals("null") && !company_id.isEmpty()) {
                 sb.append("\nCompany ID: ").append(company_id);
             }
         } else {
