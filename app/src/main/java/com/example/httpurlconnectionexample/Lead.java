@@ -1,9 +1,5 @@
 package com.example.httpurlconnectionexample;
 
-import static java.lang.String.valueOf;
-
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 
