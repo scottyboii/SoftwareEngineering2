@@ -6,7 +6,14 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+
+/**
+ * Lead Class
+ * Strings id, source, status, reason_disqualified, type, vendor_id, rating, company_id
+ * This is just the main Lead class with all of the constructors and the toString for the lead class.
+ */
 public class Lead {
+    // Lead Properties
     @NonNull
     String id;
     final String source;
@@ -19,7 +26,7 @@ public class Lead {
     final String rating;
     final String company_id;
 
-
+    // Lead Constructor
     public Lead(String id, String source, String status, String reason, String type, String vendorid, String rating, String companyid) {
         this.id = id;
         this.source = source;
@@ -31,6 +38,7 @@ public class Lead {
         this.company_id = companyid;
     }
 
+    // Lead toString, with logic to only include the relevant parts of the string. Will return "empty" lead if no field is set.
     @NonNull
     @Override
     public String toString() {

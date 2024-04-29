@@ -20,6 +20,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    // API URL for my api
     final String url_api_view = "https://student03.csucleeds.com/student03/cpu/api.php?apicall=view";
 
     FloatingActionButton fab;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Start the new lead activity to add a lead
         fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+
     public void onResume() {
         super.onResume();
 
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void dataDownloadedSuccessfully(Object data) {
                 ListView listView = (ListView) findViewById(R.id.listView);
 
+                // Add the leads to the view
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
                         android.R.layout.simple_list_item_1, jsonDecoder((String) data));
 
@@ -56,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
 
+            // If it failed to get the data from the API
             @Override
             public void dataDownloadFailed() {
                 Toast.makeText(MainActivity.this, "No records found.", Toast.LENGTH_SHORT).show();
@@ -65,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         uRLConnectionGetHandler.execute(url_api_view);
     }
 
+    /**
+     * Decode the json that is returned from the api and create a new lead to be displayed
+     * @param json_string
+     * @return
+     */
     private List<String> jsonDecoder(String json_string) {
         try {
             json_string = json_string.substring(json_string.indexOf("{"));

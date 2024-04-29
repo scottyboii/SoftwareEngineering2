@@ -9,8 +9,8 @@ android {
         applicationId "com.example.httpurlconnectionexample"
         minSdk 21
         targetSdk 34
-        versionCode 9
-        versionName "1.0.10"
+        versionCode 10
+        versionName "1.0.11"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

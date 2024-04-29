@@ -15,6 +15,7 @@ import java.util.List;
 
 public class NewLeadActivity extends AppCompatActivity {
 
+    // My API URL
     final String url_insert_lead = "https://student03.csucleeds.com/student03/cpu/api.php?apicall=insert";
     Spinner spinner_source, spinner_status, spinner_reason, spinner_type, spinner_rating;
     EditText vendorID, companyID;
@@ -25,6 +26,7 @@ public class NewLeadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_lead);
 
+        // Find the UI elements
         spinner_source = findViewById(R.id.spinner_source);
         spinner_status = findViewById(R.id.spinner_status);
         spinner_reason = findViewById(R.id.spinner_reason);
@@ -61,6 +63,7 @@ public class NewLeadActivity extends AppCompatActivity {
         });
     }
 
+    // Add the data values to the drop downs
     private void populateSpinners() {
         List<String> sources = new ArrayList<>();
         sources.add("website");
@@ -91,6 +94,7 @@ public class NewLeadActivity extends AppCompatActivity {
         ratings.add("B");
         ratings.add("C");
 
+        // Add the adapters for the dropdowns
         ArrayAdapter<String> dataAdapterSources = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sources);
         dataAdapterSources.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_source.setAdapter(dataAdapterSources);
@@ -113,6 +117,8 @@ public class NewLeadActivity extends AppCompatActivity {
 
     }
 
+
+    // Generate the parameters for the insert API call
     private String generateParameters() {
         StringBuilder paramString = new StringBuilder();
         paramString.append("source=");
