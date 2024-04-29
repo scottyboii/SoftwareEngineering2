@@ -89,8 +89,6 @@ public class URLConnectionPostHandler extends AsyncTask<Object, String, Object> 
                 return response.toString();
             }
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

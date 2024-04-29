@@ -71,8 +71,6 @@ public class URLConnectionGetHandler extends AsyncTask<Object, Void, Object> {
             String result = null;
             result = br.readLine();
             return result;
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
