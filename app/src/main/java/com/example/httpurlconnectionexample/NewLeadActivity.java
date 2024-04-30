@@ -45,8 +45,7 @@ public class NewLeadActivity extends AppCompatActivity {
                 public void dataDownloadedSuccessfully(Object data) {
                     // handler result
                     //TODO: Write a check for successful result
-                    //Toast.makeText(NewLeadActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(NewLeadActivity.this, generateParameters(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(NewLeadActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
                     finish();
                 }
 
