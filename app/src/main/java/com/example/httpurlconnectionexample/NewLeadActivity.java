@@ -115,7 +115,7 @@ public class NewLeadActivity extends AppCompatActivity {
 
     // Generate the parameters for the insert API call
     private String generateParameters() {
-        String paramString = "source=" +
+        return "source=" +
                 spinner_source.getItemAtPosition(spinner_source.getSelectedItemPosition()).toString() +
                 "&status=" +
                 spinner_status.getItemAtPosition(spinner_status.getSelectedItemPosition()).toString() +
@@ -129,7 +129,6 @@ public class NewLeadActivity extends AppCompatActivity {
                 spinner_rating.getItemAtPosition(spinner_rating.getSelectedItemPosition()).toString() +
                 "&companyid=" +
                 companyID.getText().toString();
-        return paramString;
     }
 
 
