@@ -116,22 +116,21 @@ public class NewLeadActivity extends AppCompatActivity {
 
     // Generate the parameters for the insert API call
     private String generateParameters() {
-        StringBuilder paramString = new StringBuilder();
-        paramString.append("source=");
-        paramString.append(spinner_source.getItemAtPosition(spinner_source.getSelectedItemPosition()).toString());
-        paramString.append("&status=");
-        paramString.append(spinner_status.getItemAtPosition(spinner_status.getSelectedItemPosition()).toString());
-        paramString.append("&reason=");
-        paramString.append(spinner_reason.getItemAtPosition(spinner_reason.getSelectedItemPosition()).toString());
-        paramString.append("&typeoflead=");
-        paramString.append(spinner_type.getItemAtPosition(spinner_type.getSelectedItemPosition()).toString());
-        paramString.append("&vendorid=");
-        paramString.append(vendorID.getText().toString());
-        paramString.append("&rating=");
-        paramString.append(spinner_rating.getItemAtPosition(spinner_rating.getSelectedItemPosition()).toString());
-        paramString.append("&companyid=");
-        paramString.append(companyID.getText().toString());
-        return paramString.toString();
+        String paramString = "source=" +
+                spinner_source.getItemAtPosition(spinner_source.getSelectedItemPosition()).toString() +
+                "&status=" +
+                spinner_status.getItemAtPosition(spinner_status.getSelectedItemPosition()).toString() +
+                "&reason=" +
+                spinner_reason.getItemAtPosition(spinner_reason.getSelectedItemPosition()).toString() +
+                "&typeoflead=" +
+                spinner_type.getItemAtPosition(spinner_type.getSelectedItemPosition()).toString() +
+                "&vendorid=" +
+                vendorID.getText().toString() +
+                "&rating=" +
+                spinner_rating.getItemAtPosition(spinner_rating.getSelectedItemPosition()).toString() +
+                "&companyid=" +
+                companyID.getText().toString();
+        return paramString;
     }
 
 
