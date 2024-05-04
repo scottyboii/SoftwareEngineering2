@@ -37,7 +37,10 @@ public class Lead {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        if (!source.equalsIgnoreCase("null") && !source.isEmpty() || !status.equalsIgnoreCase("null") && !status.isEmpty() || !reason_disqualified.equalsIgnoreCase("null") && !reason_disqualified.isEmpty() || !type.equalsIgnoreCase("null") && !type.isEmpty() || !vendor_id.equalsIgnoreCase("null") && !vendor_id.isEmpty() || !rating.equalsIgnoreCase("null") && !rating.isEmpty() || !company_id.equalsIgnoreCase("null") && !company_id.isEmpty()) {
+        if (!source.equalsIgnoreCase("null") && !source.isEmpty() || !status.equalsIgnoreCase("null") && !status.isEmpty() ||
+                !reason_disqualified.equalsIgnoreCase("null") && !reason_disqualified.isEmpty() || !type.equalsIgnoreCase("null") && !type.isEmpty() ||
+                !vendor_id.equalsIgnoreCase("null") && !vendor_id.isEmpty() || !rating.equalsIgnoreCase("null") && !rating.isEmpty() ||
+                !company_id.equalsIgnoreCase("null") && !company_id.isEmpty()) {
             sb.append(id).append(")");
             if (!source.equalsIgnoreCase("null") && !source.isEmpty()) {
                 sb.append("\nSource: '").append(source).append('\'');
