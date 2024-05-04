@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Decode the json that is returned from the api and create a new lead to be displayed
      * @param json_string           String of json that is passed into the function
-     * @return                      Returns a List of strings for each attribute for the Lead
+     * @return                      Returns a Lead object from the JSON
      */
     private List<String> jsonDecoder(String json_string) {
         try {
