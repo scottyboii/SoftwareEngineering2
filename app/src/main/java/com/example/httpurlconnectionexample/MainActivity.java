@@ -20,85 +20,93 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    // API URL for my api
-    final String url_api_view = "https://student03.csucleeds.com/student03/cpu/api.php?apicall=view";
+    private static final String URL_API_VIEW = "https://student03.csucleeds.com/student03/cpu/api.php?apicall=view";
 
-    FloatingActionButton fab;
+    private FloatingActionButton addLeadButton;
+    private ListView leadsListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Start the new lead activity to add a lead
-        fab = findViewById(R.id.floatingActionButton);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(getBaseContext(), NewLeadActivity.class);
+        initializeUiComponents();
+        setAddLeadButtonListener();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchAndDisplayLeads();
+    }
+
+    private void initializeUiComponents() {
+        addLeadButton = findViewById(R.id.floatingActionButton);
+        leadsListView = findViewById(R.id.listView);
+    }
+
+    private void setAddLeadButtonListener() {
+        addLeadButton.setOnClickListener(v -> {
+            Intent intent = new Intent(this, NewLeadActivity.class);
             startActivity(intent);
         });
     }
 
-
-    public void onResume() {
-        super.onResume();
-
-        URLConnectionGetHandler uRLConnectionGetHandler = new URLConnectionGetHandler();
-        uRLConnectionGetHandler.setDataDownloadListener(new URLConnectionGetHandler.DataDownloadListener() {
+    private void fetchAndDisplayLeads() {
+        URLConnectionGetHandler urlConnectionGetHandler = new URLConnectionGetHandler();
+        urlConnectionGetHandler.setDataDownloadListener(new URLConnectionGetHandler.DataDownloadListener() {
             @Override
             public void dataDownloadedSuccessfully(Object data) {
-                ListView listView = findViewById(R.id.listView);
-
-                // Add the leads to the view
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this,
-                        android.R.layout.simple_list_item_1, Objects.requireNonNull(jsonDecoder((String) data)));
-
-                if (listView != null) {
-                    listView.setAdapter(adapter);
-                }
+                displayLeads((String) data);
             }
 
-            // If it failed to get the data from the API
             @Override
             public void dataDownloadFailed() {
-                Toast.makeText(MainActivity.this, "No records found.", Toast.LENGTH_SHORT).show();
-
+                showNoRecordsFoundMessage();
             }
         });
-        uRLConnectionGetHandler.execute(url_api_view);
+        urlConnectionGetHandler.execute(URL_API_VIEW);
     }
 
-    /**
-     * Decode the json that is returned from the api and create a new lead to be displayed
-     * @param json_string           String of json that is passed into the function
-     * @return                      Returns a Lead object from the JSON
-     */
-    private List<String> jsonDecoder(String json_string) {
+    private void displayLeads(String jsonString) {
+        List<String> leadStrings = parseLeadsFromJson(jsonString);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, leadStrings);
+        leadsListView.setAdapter(adapter);
+    }
+
+    private List<String> parseLeadsFromJson(String jsonString) {
         try {
-            json_string = json_string.substring(json_string.indexOf("{"));
+            jsonString = jsonString.substring(jsonString.indexOf("{"));
+            List<String> leadStrings = new ArrayList<>();
+            JSONObject root = new JSONObject(jsonString);
+            JSONArray leadsArray = root.getJSONArray("leads");
 
-            List<String> items = new ArrayList<>();
-            JSONObject root = new JSONObject(json_string);
-
-            JSONArray array = root.getJSONArray("leads");
-
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject object = array.getJSONObject(i);
-                Lead newLead = new Lead(
-                        object.getString("id"),
-                        object.getString("source"),
-                        object.getString("status"),
-                        object.getString("reason_disqualified"),
-                        object.getString("type"),
-                        object.getString("current_component_vendor_id"),
-                        object.getString("rating"),
-                        object.getString("contact_id"));
-                items.add(newLead.toString());
+            for (int i = 0; i < leadsArray.length(); i++) {
+                JSONObject leadObject = leadsArray.getJSONObject(i);
+                Lead lead = createLeadFromJson(leadObject);
+                leadStrings.add(lead.toString());
             }
-            return items;
-
+            return leadStrings;
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Lead createLeadFromJson(JSONObject leadObject) throws JSONException {
+        return new Lead(
+                leadObject.getString("id"),
+                leadObject.getString("source"),
+                leadObject.getString("status"),
+                leadObject.getString("reason_disqualified"),
+                leadObject.getString("type"),
+                leadObject.getString("current_component_vendor_id"),
+                leadObject.getString("rating"),
+                leadObject.getString("contact_id")
+        );
+    }
+
+    private void showNoRecordsFoundMessage() {
+        Toast.makeText(this, "No records found.", Toast.LENGTH_SHORT).show();
     }
 }
