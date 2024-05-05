@@ -49,7 +49,8 @@ public class Lead {
     }
 
     private boolean hasAnyNonNullOrNonEmptyField() {
-        return !isNullOrEmpty(source) || !isNullOrEmpty(status) || !isNullOrEmpty(reasonDisqualified) || !isNullOrEmpty(type) || !isNullOrEmpty(vendorId) || !isNullOrEmpty(rating) || !isNullOrEmpty(companyId);
+        return !isNullOrEmpty(source) || !isNullOrEmpty(status) || !isNullOrEmpty(reasonDisqualified) ||
+                !isNullOrEmpty(type) || !isNullOrEmpty(vendorId) || !isNullOrEmpty(rating) || !isNullOrEmpty(companyId);
     }
 
     private void appendReasonDisqualifiedIfNotNullOrEmpty(StringBuilder sb) {
