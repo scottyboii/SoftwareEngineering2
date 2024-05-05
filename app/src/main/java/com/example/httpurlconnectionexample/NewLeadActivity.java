@@ -14,122 +14,95 @@ import java.util.List;
 
 public class NewLeadActivity extends AppCompatActivity {
 
-    // My API URL
-    final String url_insert_lead = "https://student03.csucleeds.com/student03/cpu/api.php?apicall=insert";
-    Spinner spinner_source, spinner_status, spinner_reason, spinner_type, spinner_rating;
-    EditText vendorID, companyID;
-    Button button_submit;
+    private static final String URL_INSERT_LEAD = "https://student03.csucleeds.com/student03/cpu/api.php?apicall=insert";
+
+    private Spinner sourceSpinner, statusSpinner, reasonSpinner, typeSpinner, ratingSpinner;
+    private EditText vendorIdEditText, companyIdEditText;
+    private Button submitButton;
+
+    private URLConnectionPostHandler urlConnectionPostHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_lead);
 
-        // Find the UI elements
-        spinner_source = findViewById(R.id.spinner_source);
-        spinner_status = findViewById(R.id.spinner_status);
-        spinner_reason = findViewById(R.id.spinner_reason);
-        spinner_type = findViewById(R.id.spinner_type);
-        spinner_rating = findViewById(R.id.spinner_rating);
-        vendorID = findViewById(R.id.editText_vendorID);
-        companyID = findViewById(R.id.editText_companyID);
-
+        initializeUiComponents();
         populateSpinners();
+        setSubmitButtonListener();
+    }
 
-        //button
-        button_submit = findViewById(R.id.button_submit);
-        button_submit.setOnClickListener(v -> {
-            URLConnectionPostHandler uRLConnectionPostHandler = new URLConnectionPostHandler();
-            uRLConnectionPostHandler.setDataDownloadListener(new URLConnectionPostHandler.DataDownloadListener() {
-                @Override
-                public void dataDownloadedSuccessfully(Object data) {
-                    // handler result
-                    //TODO: Write a check for successful result
-                    Toast.makeText(NewLeadActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+    private void initializeUiComponents() {
+        sourceSpinner = findViewById(R.id.spinner_source);
+        statusSpinner = findViewById(R.id.spinner_status);
+        reasonSpinner = findViewById(R.id.spinner_reason);
+        typeSpinner = findViewById(R.id.spinner_type);
+        ratingSpinner = findViewById(R.id.spinner_rating);
+        vendorIdEditText = findViewById(R.id.editText_vendorID);
+        companyIdEditText = findViewById(R.id.editText_companyID);
+        submitButton = findViewById(R.id.button_submit);
+    }
 
-                @Override
-                public void dataDownloadFailed() {
-                    Toast.makeText(NewLeadActivity.this, "Record not added.", Toast.LENGTH_SHORT).show();
-                }
-            });
-            uRLConnectionPostHandler.execute(url_insert_lead, generateParameters());
+    private void populateSpinners() {
+        List<String> sources = new ArrayList<>(List.of("Website", "Telephone", "Email"));
+        List<String> status = new ArrayList<>(List.of("New", "Working", "Qualified", "Disqualified", "Customer"));
+        List<String> reasons = new ArrayList<>(List.of("Not Disqualified", "Too Small", "Unserved Geography", "Bad Information", "Competitor"));
+        List<String> types = new ArrayList<>(List.of("Commercial", "Educational", "Domestic"));
+        List<String> ratings = new ArrayList<>(List.of("A", "B", "C"));
+
+        setSpinnerAdapter(sourceSpinner, sources);
+        setSpinnerAdapter(statusSpinner, status);
+        setSpinnerAdapter(reasonSpinner, reasons);
+        setSpinnerAdapter(typeSpinner, types);
+        setSpinnerAdapter(ratingSpinner, ratings);
+    }
+
+    private void setSpinnerAdapter(Spinner spinner, List<String> items) {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private void setSubmitButtonListener() {
+        urlConnectionPostHandler = new URLConnectionPostHandler();
+        urlConnectionPostHandler.setDataDownloadListener(new URLConnectionPostHandler.DataDownloadListener() {
+            @Override
+            public void dataDownloadedSuccessfully(Object data) {
+                handleSuccessfulDataDownload(data);
+            }
+
+            @Override
+            public void dataDownloadFailed() {
+                handleFailedDataDownload();
+            }
+        });
+
+        submitButton.setOnClickListener(v -> {
+            String parameters = generateParameters();
+            urlConnectionPostHandler.execute(URL_INSERT_LEAD, parameters);
         });
     }
 
-    // Add the data values to the drop downs
-    private void populateSpinners() {
-        List<String> sources = new ArrayList<>();
-        sources.add("website");
-        sources.add("telephone");
-        sources.add("email");
-
-        List<String> status = new ArrayList<>();
-        status.add("new");
-        status.add("working");
-        status.add("qualified");
-        status.add("disqualified");
-        status.add("customer");
-
-        List<String> reason = new ArrayList<>();
-        reason.add("Not Disqualified");
-        reason.add("Too Small");
-        reason.add("Unserved Geography");
-        reason.add("Bad Information");
-        reason.add("Competitor");
-
-        List<String> types = new ArrayList<>();
-        types.add("commercial");
-        types.add("educational");
-        types.add("domestic");
-
-        List<String> ratings = new ArrayList<>();
-        ratings.add("A");
-        ratings.add("B");
-        ratings.add("C");
-
-        // Add the adapters for the dropdowns
-        ArrayAdapter<String> dataAdapterSources = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, sources);
-        dataAdapterSources.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_source.setAdapter(dataAdapterSources);
-
-        ArrayAdapter<String> dataAdapterStatus = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, status);
-        dataAdapterStatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_status.setAdapter(dataAdapterStatus);
-
-        ArrayAdapter<String> dataAdapterReasons = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, reason);
-        dataAdapterReasons.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_reason.setAdapter(dataAdapterReasons);
-
-        ArrayAdapter<String> dataAdapterTypes = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, types);
-        dataAdapterTypes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_type.setAdapter(dataAdapterTypes);
-
-        ArrayAdapter<String> dataAdapterRatings = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ratings);
-        dataAdapterRatings.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_rating.setAdapter(dataAdapterRatings);
-
-    }
-
-
-    // Generate the parameters for the insert API call
     private String generateParameters() {
-        return "source=" +
-                spinner_source.getItemAtPosition(spinner_source.getSelectedItemPosition()).toString() +
-                "&status=" +
-                spinner_status.getItemAtPosition(spinner_status.getSelectedItemPosition()).toString() +
-                "&reason=" +
-                spinner_reason.getItemAtPosition(spinner_reason.getSelectedItemPosition()).toString() +
-                "&typeoflead=" +
-                spinner_type.getItemAtPosition(spinner_type.getSelectedItemPosition()).toString() +
-                "&vendorid=" +
-                vendorID.getText().toString() +
-                "&rating=" +
-                spinner_rating.getItemAtPosition(spinner_rating.getSelectedItemPosition()).toString() +
-                "&companyid=" +
-                companyID.getText().toString();
+        return "source=" + getSelectedSpinnerItem(sourceSpinner) +
+                "&status=" + getSelectedSpinnerItem(statusSpinner) +
+                "&reason=" + getSelectedSpinnerItem(reasonSpinner) +
+                "&typeoflead=" + getSelectedSpinnerItem(typeSpinner) +
+                "&vendorid=" + vendorIdEditText.getText().toString() +
+                "&rating=" + getSelectedSpinnerItem(ratingSpinner) +
+                "&companyid=" + companyIdEditText.getText().toString();
     }
 
+    private String getSelectedSpinnerItem(Spinner spinner) {
+        return spinner.getItemAtPosition(spinner.getSelectedItemPosition()).toString();
+    }
 
+    private void handleSuccessfulDataDownload(Object data) {
+        Toast.makeText(this, data.toString(), Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    private void handleFailedDataDownload() {
+        Toast.makeText(this, "Record not added.", Toast.LENGTH_SHORT).show();
+    }
 }
