@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 /**
  * Represents a lead with various properties.
+ * @Params id, source, status, reasonDisqualified, type, vendorId, rating, companyId
  */
 public class Lead {
     @NonNull
@@ -27,6 +28,10 @@ public class Lead {
         this.companyId = companyId;
     }
 
+    /**
+     * Convert the Lead class to a string to display
+     * @return string form of the Lead
+     */
     @NonNull
     @Override
     public String toString() {
@@ -47,6 +52,8 @@ public class Lead {
 
         return sb.toString();
     }
+
+    // Validation for the string builder
 
     private boolean hasAnyNonNullOrNonEmptyField() {
         return !isNullOrEmpty(source) || !isNullOrEmpty(status) || !isNullOrEmpty(reasonDisqualified) ||

@@ -74,6 +74,11 @@ public class MainActivity extends AppCompatActivity {
         leadsListView.setAdapter(adapter);
     }
 
+    /**
+     * Convert json to a list of leads
+     * @param jsonString
+     * @return List of Leads
+     */
     private List<String> parseLeadsFromJson(String jsonString) {
         try {
             jsonString = jsonString.substring(jsonString.indexOf("{"));
