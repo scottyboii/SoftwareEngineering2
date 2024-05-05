@@ -2,72 +2,69 @@ package com.example.httpurlconnectionexample;
 
 import androidx.annotation.NonNull;
 
-
 /**
- * Lead Class
- * Strings id, source, status, reason_disqualified, type, vendor_id, rating, company_id
- * This is just the main Lead class with all of the constructors and the toString for the lead class.
+ * Represents a lead with various properties.
  */
 public class Lead {
-    // Lead Properties
     @NonNull
-    final String id;
-    final String source;
-    final String status;
-    final String reason_disqualified;
-    final String type;
-    final String vendor_id;
-    final String rating;
-    final String company_id;
+    private final String id;
+    private final String source;
+    private final String status;
+    private final String reasonDisqualified;
+    private final String type;
+    private final String vendorId;
+    private final String rating;
+    private final String companyId;
 
-    // Lead Constructor
-    public Lead(@NonNull String id, String source, String status, String reason, String type, String vendorid, String rating, String companyid) {
+    public Lead(@NonNull String id, String source, String status, String reasonDisqualified, String type, String vendorId, String rating, String companyId) {
         this.id = id;
         this.source = source;
         this.status = status;
-        this.reason_disqualified = reason;
+        this.reasonDisqualified = reasonDisqualified;
         this.type = type;
-        this.vendor_id = vendorid;
+        this.vendorId = vendorId;
         this.rating = rating;
-        this.company_id = companyid;
+        this.companyId = companyId;
     }
 
-    // Lead toString, with logic to only include the relevant parts of the string. Will return "empty lead" if no field is set.
     @NonNull
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder();
-        if (!source.equalsIgnoreCase("null") && !source.isEmpty() || !status.equalsIgnoreCase("null") && !status.isEmpty() ||
-                !reason_disqualified.equalsIgnoreCase("null") && !reason_disqualified.isEmpty() || !type.equalsIgnoreCase("null") && !type.isEmpty() ||
-                !vendor_id.equalsIgnoreCase("null") && !vendor_id.isEmpty() || !rating.equalsIgnoreCase("null") && !rating.isEmpty() ||
-                !company_id.equalsIgnoreCase("null") && !company_id.isEmpty()) {
+        StringBuilder sb = new StringBuilder();
+
+        if (hasAnyNonNullOrNonEmptyField()) {
             sb.append(id).append(")");
-            if (!source.equalsIgnoreCase("null") && !source.isEmpty()) {
-                sb.append("\nSource: '").append(source).append('\'');
-            }
-            if (!status.equalsIgnoreCase("null") && !status.isEmpty()) {
-                sb.append("\nStatus: '").append(status).append('\'');
-            }
-            if (!reason_disqualified.equalsIgnoreCase("null") && !reason_disqualified.isEmpty()) {
-                if (!reason_disqualified.equalsIgnoreCase("Not Disqualified")) {
-                    sb.append("\nReason Disqualified: '").append(reason_disqualified).append('\'');
-                }
-            }
-            if (!type.equalsIgnoreCase("null") && !type.isEmpty()) {
-                sb.append("\nLead Type: '").append(type).append('\'');
-            }
-            if (!vendor_id.equalsIgnoreCase("null") && !vendor_id.isEmpty()) {
-                sb.append("\nVendor ID: ").append(vendor_id);
-            }
-            if (!rating.equalsIgnoreCase("null") && !rating.isEmpty()) {
-                sb.append("\nRating: '").append(rating).append('\'');
-            }
-            if (!company_id.equals("null") && !company_id.isEmpty()) {
-                sb.append("\nCompany ID: ").append(company_id);
-            }
+            appendFieldIfNotNullOrEmpty(sb, "Source", source);
+            appendFieldIfNotNullOrEmpty(sb, "Status", status);
+            appendReasonDisqualifiedIfNotNullOrEmpty(sb);
+            appendFieldIfNotNullOrEmpty(sb, "Lead Type", type);
+            appendFieldIfNotNullOrEmpty(sb, "Vendor ID", vendorId);
+            appendFieldIfNotNullOrEmpty(sb, "Rating", rating);
+            appendFieldIfNotNullOrEmpty(sb, "Company ID", companyId);
         } else {
-            sb.append(id).append(")\n").append("Empty Lead");
+            sb.append(id).append(")\nEmpty Lead");
         }
+
         return sb.toString();
+    }
+
+    private boolean hasAnyNonNullOrNonEmptyField() {
+        return !isNullOrEmpty(source) || !isNullOrEmpty(status) || !isNullOrEmpty(reasonDisqualified) || !isNullOrEmpty(type) || !isNullOrEmpty(vendorId) || !isNullOrEmpty(rating) || !isNullOrEmpty(companyId);
+    }
+
+    private void appendReasonDisqualifiedIfNotNullOrEmpty(StringBuilder sb) {
+        if (!isNullOrEmpty(reasonDisqualified) && !"Not Disqualified".equalsIgnoreCase(reasonDisqualified)) {
+            sb.append("\nReason Disqualified: '").append(reasonDisqualified).append('\'');
+        }
+    }
+
+    private void appendFieldIfNotNullOrEmpty(StringBuilder sb, String fieldName, String fieldValue) {
+        if (!isNullOrEmpty(fieldValue)) {
+            sb.append("\n").append(fieldName).append(": '").append(fieldValue).append('\'');
+        }
+    }
+
+    private boolean isNullOrEmpty(String value) {
+        return value == null || value.trim().isEmpty() || "null".equalsIgnoreCase(value);
     }
 }
